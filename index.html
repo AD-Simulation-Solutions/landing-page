@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD Scenarios | Digital Twin Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles for smooth scrolling and placeholders */
+        html { scroll-behavior: smooth; }
+        .hero-bg {
+            background-color: #0f172a;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <div id="cookie-banner" class="fixed top-0 w-full bg-slate-900 text-white text-sm py-3 px-6 z-50 flex justify-between items-center shadow-lg">
+        <p>We use cookies to ensure you get the best experience on our website. <a href="#" class="underline text-blue-400">Learn more</a>.</p>
+        <button onclick="document.getElementById('cookie-banner').style.display='none'" class="bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded text-xs font-bold uppercase tracking-wider">Accept</button>
+    </div>
+
+    <header class="fixed w-full top-12 z-40 bg-white/95 backdrop-blur border-b border-slate-200 transition-all">
+        <div class="container mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter text-slate-900">
+                <img src="assets/Logo Short Color.svg" alt="ADSS" class="h-16 mr-2 inline-block filter brightness-86 saturate-164 hue-rotate-146">
+                <span class="text-blue-600">|</span> AD Simulation Solutions
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 font-medium text-slate-600">
+                <a href="#scenarios" class="hover:text-blue-600 transition">Scenarios</a>
+                <a href="#digital-twins" class="hover:text-blue-600 transition">Digital Twins</a>
+                <a href="#announcements" class="hover:text-blue-600 transition">Announcements</a>
+            </nav>
+
+            <a href="#contact" class="bg-slate-900 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-600 transition">Contact Us</a>
+        </div>
+    </header>
+
+    <section class="relative h-screen flex items-center justify-center hero-bg text-white pt-20 overflow-hidden">
+    
+        <video autoplay muted loop playsinline 
+               class="absolute inset-0 w-full h-full object-cover">
+            <source src="assets/header_video.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-slate-900/70"></div> <div class="relative z-10 container mx-auto px-6 text-center max-w-4xl">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+                Scenarios for <br>
+                <span class="text-blue-400">Autonomous Driving & ADAS</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-200 mb-8 font-light">
+                Unlock real-world intelligence for safer, smarter autonomy.
+            </p>
+            <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
+                We transform real traffic into high-fidelity, simulation-ready scenarios used for training, validation, and testing of AD and ADAS systems.
+            </p>
+            <a href="#contact" class="inline-block bg-blue-600 hover:bg-blue-500 text-white text-lg px-8 py-4 rounded-lg font-bold shadow-lg transition transform hover:scale-105">
+                Request a Demo
+            </a>
+        </div>
+    </section>
+
+    <section id="scenarios" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Solutions for Autonomous Driving</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="p-8 border border-slate-200 rounded-xl hover:shadow-xl transition">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Natural Scenarios</h3>
+                    <p class="text-slate-600 mb-4">
+                        Real-world driving behavior captured directly from urban surveillance cameras. Collected traffic data from intersections, highways, and complex road nodes is reconstructed in precise 2D/3D road coordinates.
+                    </p>
+                    <p class="text-slate-600">
+                        Scenarios expose autonomous systems to naturalistic traffic patterns, rare events, and unpredictable human behavior not found in synthetic schemas. This allows reproduction of highly realistic driving scenarios by any ADAS/AD simulator. 
+                    </p>
+                </div>
+
+                <div class="p-8 border border-slate-200 rounded-xl hover:shadow-xl transition">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Classified Data Sets</h3>
+                    <p class="text-slate-600 mb-4">
+                        A structured, searchable library of real-world driving scenarios with full categorization. Datasets include thousands of episodes sorted by:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
+                        <li>Participant type categories</li>
+                        <li>Maneuver complexity</li>
+                        <li>Collision risk levels</li>
+                        <li>Rare-event occurrences</li>
+                        <li>Traffic density</li>
+                    </ul>
+                    <p class="text-sm text-slate-500 italic">Enriched with metadata for AD/ADAS training & validation.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#deep-dive" class="text-blue-600 font-bold text-lg hover:underline flex items-center justify-center gap-2">
+                    Read more about scenarios 
+                    <span>&darr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="deep-dive" class="py-20 bg-slate-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                
+                <div>
+                    <h2 class="text-3xl font-bold mb-8">Scenario Recording & Reconstruction</h2>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-blue-400 mb-2">Surveillance-Based Capture</h4>
+                        <p class="text-slate-300">We capture large-scale real-world traffic using CCTV systems installed at roads and intersections. All traffic participants are tracked in real-time and mapped to an accurate land-coordinate system.</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-blue-400 mb-2">Trajectory-Based Reproduction</h4>
+                        <p class="text-slate-300">From reconstructed motion data, we generate simulation-ready scenarios where the ego-vehicle can be placed in the position of any participant. This enables exhaustive testing in realistic conditions.</p>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="text-xl font-bold text-blue-400 mb-2">Key Capabilities</h4>
+                        <ul class="space-y-2 text-slate-300">
+                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> High-precision trajectory recording</li>
+                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> Automatic recognition of vehicle type & size</li>
+                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> Multi-modal tracking (cars, trucks, peds, bikes)</li>
+                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> Flexible export for various simulators</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
+                        <h4 class="text-lg font-bold mb-3">Supported Standards</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-blue-300">ASAM OpenDRIVE</span>
+                            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-blue-300">ASAM OpenSCENARIO</span>
+                            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-blue-300">ASAM OpenCRG</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="relative rounded-xl h-128 md:h-[600px] border border-slate-700 shadow-2xl overflow-hidden">
+                        <video autoplay muted loop playsinline 
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <source src="assets/ScenarioExtraction.mp4" type="video/mp4">
+                        </video>
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-slate-900/40"></div>
+
+                                 </div>
+                    
+                    <div class="text-center">
+                        <a href="#contact" class="inline-block w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition">
+                            Request a Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="digital-twins" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16 text-slate-900">Digital Twin Solutions</h2>
+
+            <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Real-Time Traffic Intelligence</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Smart Real-Time Traffic Management</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
+                                <li>Low-time-to-collision detection</li>
+                                <li>Detection of atypical or risky behavior</li>
+                                <li>Predictive driver-behavior analytics</li>
+                                <li>Safety insights tailored to client needs</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Micro-Level Traffic Load Analytics</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
+                                <li>High-resolution analytics for road segments & tunnels</li>
+                                <li>Improves planning, modeling, and operational decisions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-white p-2 rounded-xl shadow-lg border border-slate-200">
+                    <div class="h-96 bg-slate-100 rounded flex items-center justify-center text-slate-400">
+                        <img src="assets/DynamicDT_image.png" alt="Interactive Traffic Heatmap Visual" class="w-full h-96 object-cover rounded">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-slate-200 my-16">
+
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">3D Digital Twin & V2X Readiness</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">3D Surveillance of the Traffic Scene</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
+                                <li>Unified 3D situational view from multiple camera angles</li>
+                                <li>Real-time coherent representation for operators</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Future-Ready V2X Infrastructure</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
+                                <li>Serves as perception layer for connected-vehicle services</li>
+                                <li>Supports development of smart roads and autonomous mobility</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-white p-2 rounded-xl shadow-lg border border-slate-200">
+                    <div class="h-96 bg-slate-900 rounded flex items-center justify-center text-slate-400">
+                        <img src="assets/I2V.png" alt="infrastructure to Vehicle Communication" class="w-full h-96 object-cover rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="announcements" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-10 text-slate-900">News & Announcements</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
+                    <span class="text-xs font-bold text-blue-600 uppercase">Conference</span>
+                    <h4 class="font-bold text-lg mt-2 mb-2">Global Mobility Summit 2025</h4>
+                    <p class="text-sm text-slate-600">Catch us presenting our latest ADAS validation methodologies in Berlin.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
+                    <span class="text-xs font-bold text-green-600 uppercase">Partnership</span>
+                    <h4 class="font-bold text-lg mt-2 mb-2">New Strategic Alliance</h4>
+                    <p class="text-sm text-slate-600">Announcing our collaboration with leading Smart City providers.</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
+                    <span class="text-xs font-bold text-purple-600 uppercase">Product Release</span>
+                    <h4 class="font-bold text-lg mt-2 mb-2">Dataset Update: Dense Urban</h4>
+                    <p class="text-sm text-slate-600">500 new hours of high-density intersection scenarios now available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-blue-900 text-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Ready to build the future of real-world-driven autonomy?</h2>
+                <p class="text-xl text-blue-200">Let’s accelerate your roadmap to safer, AI-powered mobility.</p>
+            </div>
+
+            <form action="https://formspree.io/f/xnjbwbow" 
+                    method="POST"
+                    class="bg-white text-slate-900 p-8 md:p-12 rounded-2xl shadow-2xl">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Name</label>
+                        <input type="text" name="name" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none" placeholder="Your full name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">Company</label>
+                        <input type="text" name="company" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none" placeholder="Your company name">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-bold mb-2">Email</label>
+                    <input type="email" name="email" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none" placeholder="your.email@company.com">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-bold mb-2">Your Request</label>
+                    <textarea name="message" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none h-32" placeholder="Tell us about your project or questions"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition text-lg">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <section class="py-12 bg-slate-50 border-t border-slate-200">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-600 mb-8 max-w-3xl mx-auto text-lg">
+                We collaborate with technology providers, research institutions, and smart-city partners to advance real-world scenario intelligence and digital-twin ecosystems.
+            </p>
+            <div class="flex flex-wrap justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="font-bold text-2xl text-slate-400">PARTNER 1</div>
+                <div class="font-bold text-2xl text-slate-400">PARTNER 2</div>
+                <div class="font-bold text-2xl text-slate-400">PARTNER 3</div>
+                <div class="font-bold text-2xl text-slate-400">PARTNER 4</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 text-sm">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
+            <div>
+                <img src="assets/Logo Short noline white.svg" alt="ADSS" class="h-6 mb-4">
+                <p class="text-slate-300 mb-4">Pioneering real-world scenario intelligence for autonomous systems.</p>
+                <p>&copy; 2026 AD Simulation Solutions. All rights reserved.</p>
+            </div>
+            
+            <div>
+                <h5 class="text-white font-bold mb-4">Company</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">Terms and Conditions</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white">Our Offices</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-white font-bold mb-4">Connect</h5>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white flex items-center gap-2">LinkedIn</a></li>
+                    <li><a href="#contact" class="hover:text-white">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
