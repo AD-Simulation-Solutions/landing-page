@@ -1,0 +1,67 @@
+# ---------------------------------------------------------------------------
+# adss.ai — Apache configuration for OVHcloud shared hosting
+# Upload together with the rest of dist/ into the `www` folder.
+# ---------------------------------------------------------------------------
+
+AddDefaultCharset utf-8
+Options -Indexes
+DirectorySlash On
+ErrorDocument 404 /404.html
+
+# MIME types (usually already known to Apache; declared for safety)
+AddType image/svg+xml .svg
+AddType image/x-icon .ico
+AddType application/javascript .js
+AddType text/css .css
+
+# --- Redirects --------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. www.adss.ai -> adss.ai (always to HTTPS, one hop)
+  RewriteCond %{HTTP_HOST} ^www\.adss\.ai$ [NC]
+  RewriteRule ^ https://adss.ai%{REQUEST_URI} [R=301,L]
+
+  # 2. HTTP -> HTTPS. OVH terminates TLS in front of the web servers on some
+  #    offers, so also honour X-Forwarded-Proto to avoid a redirect loop.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://adss.ai%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# Old one-page site
+Redirect 301 /adss_web_site.html /
+
+# --- Compression --------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript text/javascript image/svg+xml application/ld+json application/json image/x-icon
+</IfModule>
+
+# --- Caching ------------------------------------------------------------------
+# HTML: always revalidate. Assets are referenced with a ?v=<content hash>
+# query string that changes on every content change, so they can be cached
+# for a year. Root icons change rarely: one week.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 week"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType text/plain "access plus 1 hour"
+</IfModule>
+
+# --- Security and cache headers ------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'"
+
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  <If "%{REQUEST_URI} =~ m#^/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>

@@ -1,331 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD Scenarios | Digital Twin Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom Styles for smooth scrolling and placeholders */
-        html { scroll-behavior: smooth; }
-        .hero-bg {
-            background-color: #0f172a;
-        }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(8px);
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ADSS — Real-World Traffic Scenarios for ADAS &amp; AD Validation</title>
+<meta name="description" content="ADSS turns roadside camera video into classified, simulation-ready OpenSCENARIO and OpenDRIVE scenarios for ADAS and automated-driving validation.">
+<link rel="canonical" href="https://adss.ai/">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ADSS">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="ADSS — Real-World Traffic Scenarios for ADAS &amp; AD Validation">
+<meta property="og:description" content="ADSS turns roadside camera video into classified, simulation-ready OpenSCENARIO and OpenDRIVE scenarios for ADAS and automated-driving validation.">
+<meta property="og:url" content="https://adss.ai/">
+<meta property="og:image" content="https://adss.ai/assets/img/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ADSS — Real-world traffic scenarios for ADAS &amp; AD validation">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg?v=a30febc040" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=d58347c764">
+<link rel="stylesheet" href="/assets/css/site.css?v=32cb2eb5e1">
+<script src="/assets/js/site.js?v=8d48f59f6d" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ADSS Inc.",
+  "url": "https://adss.ai/",
+  "logo": "https://adss.ai/assets/img/logo.svg",
+  "email": "info@adss.ai",
+  "sameAs": ["https://www.linkedin.com/company/ad-sim-solutions"]
+}
+</script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased">
-
-    <div id="cookie-banner" class="fixed top-0 w-full bg-slate-900 text-white text-sm py-3 px-6 z-50 flex justify-between items-center shadow-lg">
-        <p>We use cookies to ensure you get the best experience on our website. <a href="#" class="underline text-blue-400">Learn more</a>.</p>
-        <button onclick="document.getElementById('cookie-banner').style.display='none'" class="bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded text-xs font-bold uppercase tracking-wider">Accept</button>
+<body class="page-home">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-bar">
+    <a class="brand" href="/"><img src="/assets/img/logo.svg?v=c167e9c3c1" width="92" height="28" alt="ADSS home"></a>
+    <nav class="site-nav" aria-label="Main">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><svg class="icon icon-menu icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="icon icon-close icon-shut" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="nav-panel" id="site-menu">
+        <ul class="nav-list">
+          <li><a href="/technology/">Technology</a></li>
+          <li><a href="/odrmaker/">ODRMaker</a></li>
+          <li><a href="/traffic-intelligence/">Traffic Intelligence</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/news/">News</a></li>
+        </ul>
+        <a class="btn btn--primary btn--sm nav-cta" href="/contact/">Request a pilot</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<section class="hero on-dark" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Real-world traffic scenarios for ADAS &amp; AD validation</p>
+      <h1 id="hero-title">Every road user is a potential ego vehicle.</h1>
+      <p class="lead">ADSS turns continuous roadside camera video into classified, simulation-ready traffic scenarios — thousands per hour from a single observation point, delivered in ASAM OpenSCENARIO and OpenDRIVE.</p>
+      <div class="actions hero-actions">
+        <a class="btn btn--primary" href="/contact/">Request a pilot</a>
+        <a class="btn btn--ghost" href="/technology/">See how it works <svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
+    <div class="hero-visual">
+      <svg class="hero-svg" viewBox="0 0 600 500" width="600" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hero-svg-title" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo1YWE0MDhjYS00NDg2LTRjZGItOTIzYi03ZmU5YWYwNWNhNzIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaJH+Qe4lDg1K84mGe4hCjf8AAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDowN2VjYTBhOS0wNmZiLTQzMGItYTg3NS0wOGVkOTExNzE1ZDFscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNowV7o2L+v1ZDaRzVeyWyhVAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg2yApfAV5BqluAv7CFPAWKdMICxNX1JY4N8t0KOXdGCGkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaKSAJ11hJRW2uChi+A+c328AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCATfz1Qdw0Ak0iubiiiD1jhozEwbeflmUejQQpJMGRrPmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBjTZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjVhYTQwOGNhLTQ0ODYtNGNkYi05MjNiLTdmZTlhZjA1Y2E3Mi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmRhMmVjMDRmLTFmNDUtNDdmNC05ZmI0LTZkNWNlNzhhOTZmOXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDbICl8BXkGqW4C/sIU8BYp0wgLE1fUljg3y3Qo5d0YIaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggWVgZ8S7H64euGl0IxV54tSCssJx4sIISB83xkXuS9beiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg1qeugn+cBh/tzKa3CjIwl7xD2GhRRxkm4OQyhXtS8yF0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQBIphcuVSKqfkCwi8P55SHlYXT21+vVfOelg4MEmshZlQ6LCof1jVwxfvLsAy+r06bNDWInKCLjr69ndmLoRDQs=</c2pa:manifest></metadata>
+  <title id="hero-svg-title">Illustration: top-down view of an intersection seen by a roadside camera. Every road user — cars, a truck, a cyclist and a pedestrian — has a bounding box and a trajectory. One car, turning left across oncoming traffic, is highlighted as the ego vehicle.</title>
+  <defs>
+    <pattern id="hg-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#94a3b8" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+    <clipPath id="hg-clip"><rect width="600" height="500" rx="16"/></clipPath>
+  </defs>
+  <g clip-path="url(#hg-clip)">
+    <!-- asphalt -->
+    <rect width="600" height="500" fill="#1b263d"/>
+    <!-- city blocks with rounded curbs -->
+    <g fill="#101a2e" stroke="#2e3d5c" stroke-width="1.5">
+      <rect x="-40" y="-40" width="284" height="234" rx="26"/>
+      <rect x="356" y="-40" width="284" height="234" rx="26"/>
+      <rect x="-40" y="306" width="284" height="234" rx="26"/>
+      <rect x="356" y="306" width="284" height="234" rx="26"/>
+    </g>
+    <g fill="url(#hg-grid)">
+      <rect x="-40" y="-40" width="284" height="234" rx="26"/>
+      <rect x="356" y="-40" width="284" height="234" rx="26"/>
+      <rect x="-40" y="306" width="284" height="234" rx="26"/>
+      <rect x="356" y="306" width="284" height="234" rx="26"/>
+    </g>
 
-    <header class="fixed w-full top-12 z-40 bg-white/95 backdrop-blur border-b border-slate-200 transition-all">
-        <div class="container mx-auto px-6 h-16 flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-tighter text-slate-900">
-                <img src="assets/Logo Short Color.svg" alt="ADSS" class="h-16 mr-2 inline-block filter brightness-86 saturate-164 hue-rotate-146">
-                <span class="text-blue-600">|</span> AD Simulation Solutions
-            </div>
-            
-            <nav class="hidden md:flex space-x-8 font-medium text-slate-600">
-                <a href="#scenarios" class="hover:text-blue-600 transition">Scenarios</a>
-                <a href="#digital-twins" class="hover:text-blue-600 transition">Digital Twins</a>
-                <a href="#announcements" class="hover:text-blue-600 transition">Announcements</a>
-            </nav>
+    <!-- lane markings -->
+    <g fill="none" stroke="#5f6f8d" stroke-width="2">
+      <path d="M300 0V162M300 338V500M0 250H202M398 250H600"/>
+    </g>
+    <g fill="none" stroke="#475673" stroke-width="1.5" stroke-dasharray="12 12">
+      <path d="M272 0V162M328 0V162M272 338V500M328 338V500"/>
+      <path d="M0 222H202M0 278H202M398 222H600M398 278H600"/>
+    </g>
+    <!-- stop lines -->
+    <g stroke="#8a99b4" stroke-width="3" stroke-opacity=".7">
+      <path d="M246 164H299M301 336H354M204 251V304M396 196V249"/>
+    </g>
+    <!-- crosswalks -->
+    <g fill="#cbd5e1" fill-opacity=".16">
+      <path d="M248 170h6v18h-6zM260 170h6v18h-6zM272 170h6v18h-6zM284 170h6v18h-6zM296 170h6v18h-6zM308 170h6v18h-6zM320 170h6v18h-6zM332 170h6v18h-6zM344 170h6v18h-6z"/>
+      <path d="M248 312h6v18h-6zM260 312h6v18h-6zM272 312h6v18h-6zM284 312h6v18h-6zM296 312h6v18h-6zM308 312h6v18h-6zM320 312h6v18h-6zM332 312h6v18h-6zM344 312h6v18h-6z"/>
+      <path d="M210 198h18v6h-18zM210 210h18v6h-18zM210 222h18v6h-18zM210 234h18v6h-18zM210 246h18v6h-18zM210 258h18v6h-18zM210 270h18v6h-18zM210 282h18v6h-18zM210 294h18v6h-18z"/>
+      <path d="M372 198h18v6h-18zM372 210h18v6h-18zM372 222h18v6h-18zM372 234h18v6h-18zM372 246h18v6h-18zM372 258h18v6h-18zM372 270h18v6h-18zM372 282h18v6h-18zM372 294h18v6h-18z"/>
+    </g>
 
-            <a href="#contact" class="bg-slate-900 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-600 transition">Contact Us</a>
+    <!-- camera field of view -->
+    <path d="M404 352L75 264A340 340 0 0 1 316 24Z" fill="#e2e8f0" fill-opacity=".035" stroke="#e2e8f0" stroke-opacity=".22" stroke-width="1" stroke-dasharray="3 5"/>
+
+    <!-- trajectories: past (dotted history) -->
+    <g fill="none" stroke-width="3" stroke-linecap="round" stroke-dasharray="0 12" class="traj-p">
+      <path d="M314 500V412" stroke="#ed7d31"/>
+      <path d="M286 0V96" stroke="#60a5fa"/>
+      <path d="M600 208H496" stroke="#22d3ee"/>
+      <path d="M0 298H102" stroke="#a78bfa"/>
+      <path d="M219 330V280" stroke="#34d399"/>
+    </g>
+    <!-- trajectories: planned / future (animated dashes) -->
+    <g fill="none" stroke-width="2.5" stroke-linecap="round" class="traj-f">
+      <path d="M314 372V318C314 268 286 236 238 236H0" stroke="#ed7d31"/>
+      <path d="M286 144V500" stroke="#60a5fa"/>
+      <path d="M440 208H382C360 208 342 192 342 170V0" stroke="#22d3ee"/>
+      <path d="M138 298H600" stroke="#a78bfa"/>
+      <path d="M219 256V150" stroke="#34d399"/>
+    </g>
+
+    <!-- predicted conflict -->
+    <circle class="conflict" cx="289" cy="244" r="15" fill="#ed7d31" fill-opacity=".12" stroke="#ed7d31" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- road users + bounding boxes -->
+    <!-- oncoming car (southbound) -->
+    <g>
+      <rect x="278" y="106" width="16" height="28" rx="4" fill="#cbd5e1"/>
+      <rect x="280" y="122" width="12" height="6" rx="1.5" fill="#1e293b"/>
+      <rect x="280" y="109" width="12" height="4" rx="1" fill="#1e293b" fill-opacity=".7"/>
+      <rect x="272.5" y="100.5" width="27" height="39" rx="2" fill="none" stroke="#60a5fa" stroke-width="1.25"/>
+      <g class="tag"><rect x="238" y="100.5" width="31" height="14" rx="2" fill="#60a5fa" fill-opacity=".18"/><text x="253.5" y="111" fill="#93c5fd" text-anchor="middle">CAR</text></g>
+    </g>
+    <!-- truck (westbound, turning right) -->
+    <g>
+      <rect x="459" y="199" width="34" height="18" rx="2" fill="#cbd5e1"/>
+      <rect x="445" y="200.5" width="12" height="15" rx="3" fill="#e2e8f0"/>
+      <rect x="446.5" y="202.5" width="4" height="11" rx="1" fill="#1e293b"/>
+      <rect x="439.5" y="193.5" width="59" height="29" rx="2" fill="none" stroke="#22d3ee" stroke-width="1.25"/>
+      <g class="tag"><rect x="439.5" y="176" width="42" height="14" rx="2" fill="#22d3ee" fill-opacity=".16"/><text x="460.5" y="186.5" fill="#67e8f9" text-anchor="middle">TRUCK</text></g>
+    </g>
+    <!-- cyclist (eastbound) -->
+    <g>
+      <rect x="108" y="296" width="22" height="4" rx="2" fill="#94a3b8"/>
+      <ellipse cx="117" cy="298" rx="4" ry="6" fill="#e2e8f0"/>
+      <rect x="102.5" y="288.5" width="33" height="19" rx="2" fill="none" stroke="#a78bfa" stroke-width="1.25"/>
+      <g class="tag"><rect x="102.5" y="271" width="33" height="14" rx="2" fill="#a78bfa" fill-opacity=".18"/><text x="119" y="281.5" fill="#c4b5fd" text-anchor="middle">BIKE</text></g>
+    </g>
+    <!-- pedestrian (crossing, occluded from the ego by the oncoming car) -->
+    <g>
+      <ellipse cx="219" cy="268" rx="6.5" ry="3.5" fill="#94a3b8"/>
+      <circle cx="219" cy="268" r="3.6" fill="#e2e8f0"/>
+      <rect x="209.5" y="258.5" width="19" height="19" rx="2" fill="none" stroke="#34d399" stroke-width="1.25"/>
+      <g class="tag"><rect x="174" y="263" width="31" height="14" rx="2" fill="#34d399" fill-opacity=".16"/><text x="189.5" y="273.5" fill="#6ee7b7" text-anchor="middle">PED</text></g>
+    </g>
+    <!-- ego car (northbound, unprotected left turn) -->
+    <g>
+      <rect x="306" y="378" width="16" height="28" rx="4" fill="#ed7d31"/>
+      <rect x="308" y="383" width="12" height="6" rx="1.5" fill="#0f172a"/>
+      <rect x="308" y="398" width="12" height="4" rx="1" fill="#0f172a" fill-opacity=".7"/>
+      <rect x="300.5" y="372.5" width="27" height="39" rx="2" fill="none" stroke="#ed7d31" stroke-width="1.5"/>
+      <rect x="331" y="372.5" width="34" height="16" rx="3" fill="#ed7d31"/>
+      <text class="ego-label" x="348" y="384.5" fill="#0f172a" text-anchor="middle">EGO</text>
+    </g>
+
+    <!-- roadside camera on a pole -->
+    <g>
+      <circle cx="404" cy="352" r="7" fill="#0f172a" stroke="#94a3b8" stroke-width="1.5"/>
+      <g transform="translate(404 352) rotate(225)">
+        <rect x="-3" y="-6" width="20" height="12" rx="2.5" fill="#e2e8f0"/>
+        <rect x="16" y="-4" width="5" height="8" rx="1.5" fill="#94a3b8"/>
+      </g>
+    </g>
+  </g>
+  <rect x=".5" y=".5" width="599" height="499" rx="15.5" fill="none" stroke="#94a3b8" stroke-opacity=".22"/>
+</svg>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="problem-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The problem</p>
+      <h2 id="problem-title">More synthetic scenarios will not close the evidence gap.</h2>
+    </div>
+    <ul class="grid grid--3 card-list">
+      <li class="card">
+        <span class="icon-tile"><svg class="icon icon-drift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="4" cy="18" r="1.6"/><path d="M5.5 17.2C10 15.5 13.5 11 20.5 4.5"/><path d="M5.6 18.3c5.2.3 9.4-.4 14.9-2.3" stroke-dasharray="2.2 2.4"/><path d="m17 4.2 3.5.3-.3 3.5"/></svg></span>
+        <h3>Synthetic scenarios drift from reality.</h3>
+        <p>Generation gives you scale and variation, but frequencies, parameter distributions and relevance can disconnect from what actually happens on real roads.</p>
+      </li>
+      <li class="card">
+        <span class="icon-tile"><svg class="icon icon-occlusion" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 20 20 4"/></svg></span>
+        <h3>Vehicle sensors miss the interaction.</h3>
+        <p>Ego-mounted perception is excellent for the ego — and blind to everything occluded around it.</p>
+      </li>
+      <li class="card">
+        <span class="icon-tile"><svg class="icon icon-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4.8"/><circle cx="12" cy="3.6" r="1.1"/><path d="M9 12.8v1.2M15 12.8v1.2M9.5 17h5"/></svg></span>
+        <h3>Simulated traffic is too polite.</h3>
+        <p>Rule-based NPCs do not reproduce human latency, yielding or unpredictable braking.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--soft" aria-labelledby="solution-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The solution</p>
+      <h2 id="solution-title">Real traffic, turned into evidence.</h2>
+      <p>One static camera. Six steps. A searchable scenario database instead of a folder of video files.</p>
+    </div>
+    <ol class="pipeline">
+  <li class="pipeline-step">
+    <span class="pipeline-marker"><svg class="icon icon-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="6.5" width="13" height="11" rx="2"/><path d="M15.5 10.5 21 7.5v9l-5.5-3"/><circle cx="6.5" cy="10" r=".6" fill="currentColor"/></svg></span>
+    <div class="pipeline-body">
+      <span class="pipeline-num" aria-hidden="true">01</span>
+      <h3>Camera stream</h3>
+      <p>Live video from crossings and highways, 24/7.</p>
+    </div>
+  </li>
+  <li class="pipeline-step">
+    <span class="pipeline-marker"><svg class="icon icon-tracking" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 8V5a1.5 1.5 0 0 1 1.5-1.5h3M16 3.5h3A1.5 1.5 0 0 1 20.5 5v3M20.5 16v3a1.5 1.5 0 0 1-1.5 1.5h-3M8 20.5H5A1.5 1.5 0 0 1 3.5 19v-3"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.5"/></svg></span>
+    <div class="pipeline-body">
+      <span class="pipeline-num" aria-hidden="true">02</span>
+      <h3>Tracking</h3>
+      <p>Every road user detected, classified and tracked.</p>
+    </div>
+  </li>
+  <li class="pipeline-step">
+    <span class="pipeline-marker"><svg class="icon icon-projection" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 19.5 6.5 15h15l-4 4.5z"/><path d="M12 2.5v9M8.8 8.5 12 11.7l3.2-3.2"/></svg></span>
+    <div class="pipeline-body">
+      <span class="pipeline-num" aria-hidden="true">03</span>
+      <h3>Ground projection</h3>
+      <p>Image tracks become road-level trajectories.</p>
+    </div>
+  </li>
+  <li class="pipeline-step">
+    <span class="pipeline-marker"><svg class="icon icon-builder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 2.5 7.8 12 12.6l9.5-4.8z"/><path d="m2.5 12.2 9.5 4.8 9.5-4.8"/><path d="m2.5 16.4 9.5 4.8 9.5-4.8"/></svg></span>
+    <div class="pipeline-body">
+      <span class="pipeline-num" aria-hidden="true">04</span>
+      <h3>Scenario builder</h3>
+      <p>Trajectories combined with the road model into OpenSCENARIO.</p>
+    </div>
+  </li>
+  <li class="pipeline-step">
+    <span class="pipeline-marker"><svg class="icon icon-classifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 11.2V4.5A1.5 1.5 0 0 1 4.5 3h6.7a1.5 1.5 0 0 1 1.1.4l8.3 8.3a1.5 1.5 0 0 1 0 2.1l-6.7 6.7a1.5 1.5 0 0 1-2.1 0l-8.4-8.3a1.5 1.5 0 0 1-.4-1z"/><circle cx="7.8" cy="7.8" r="1.6"/></svg></span>
+    <div class="pipeline-body">
+      <span class="pipeline-num" aria-hidden="true">05</span>
+      <h3>Classifier</h3>
+      <p>Manoeuvre types and critical-event tags.</p>
+    </div>
+  </li>
+  <li class="pipeline-step">
+    <span class="pipeline-marker"><svg class="icon icon-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5v13c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-13"/><path d="M4.5 12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5"/></svg></span>
+    <div class="pipeline-body">
+      <span class="pipeline-num" aria-hidden="true">06</span>
+      <h3>Scenario database</h3>
+      <p>Filter by road user, manoeuvre, criticality and location.</p>
+    </div>
+  </li>
+</ol>
+
+  </div>
+</section>
+
+<section class="section" aria-labelledby="get-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="get-title">What you get</h2>
+    </div>
+    <ul class="grid grid--2 feature-grid">
+      <li class="feature">
+        <span class="icon-tile"><svg class="icon icon-classes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="7" cy="7" r="3.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><path d="M7 13.5 10.8 20H3.2z"/><rect x="13.5" y="13.5" width="7" height="7" rx="3.5"/></svg></span>
+        <div>
+          <h3>7 road-user classes</h3>
+          <p>Cars, vans, trucks, buses, motorcycles, bicycles, pedestrians. Any of them can be the ego.</p>
         </div>
-    </header>
-
-    <section class="relative h-screen flex items-center justify-center hero-bg text-white pt-20 overflow-hidden">
-    
-        <video autoplay muted loop playsinline 
-               class="absolute inset-0 w-full h-full object-cover">
-            <source src="assets/header_video.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-slate-900/70"></div> <div class="relative z-10 container mx-auto px-6 text-center max-w-4xl">
-            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                Scenarios for <br>
-                <span class="text-blue-400">Autonomous Driving & ADAS</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-200 mb-8 font-light">
-                Unlock real-world intelligence for safer, smarter autonomy.
-            </p>
-            <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
-                We transform real traffic into high-fidelity, simulation-ready scenarios used for training, validation, and testing of AD and ADAS systems.
-            </p>
-            <a href="#contact" class="inline-block bg-blue-600 hover:bg-blue-500 text-white text-lg px-8 py-4 rounded-lg font-bold shadow-lg transition transform hover:scale-105">
-                Request a Demo
-            </a>
+      </li>
+      <li class="feature">
+        <span class="icon-tile"><svg class="icon icon-gauge" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 17.5a8.5 8.5 0 1 1 17 0"/><path d="m12 17.5 4.2-5.2"/><circle cx="12" cy="17.5" r="1.2"/><path d="M6.2 12.3 7.5 13M12 6.5V8M17.8 12.3l-1.3.7"/></svg></span>
+        <div>
+          <h3>Criticality built in</h3>
+          <p>Minimum time-to-collision, distance to critical objects, trajectory curvature.</p>
         </div>
-    </section>
-
-    <section id="scenarios" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-slate-900">Solutions for Autonomous Driving</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="p-8 border border-slate-200 rounded-xl hover:shadow-xl transition">
-                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Natural Scenarios</h3>
-                    <p class="text-slate-600 mb-4">
-                        Real-world driving behavior captured directly from urban surveillance cameras. Collected traffic data from intersections, highways, and complex road nodes is reconstructed in precise 2D/3D road coordinates.
-                    </p>
-                    <p class="text-slate-600">
-                        Scenarios expose autonomous systems to naturalistic traffic patterns, rare events, and unpredictable human behavior not found in synthetic schemas. This allows reproduction of highly realistic driving scenarios by any ADAS/AD simulator. 
-                    </p>
-                </div>
-
-                <div class="p-8 border border-slate-200 rounded-xl hover:shadow-xl transition">
-                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Classified Data Sets</h3>
-                    <p class="text-slate-600 mb-4">
-                        A structured, searchable library of real-world driving scenarios with full categorization. Datasets include thousands of episodes sorted by:
-                    </p>
-                    <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
-                        <li>Participant type categories</li>
-                        <li>Maneuver complexity</li>
-                        <li>Collision risk levels</li>
-                        <li>Rare-event occurrences</li>
-                        <li>Traffic density</li>
-                    </ul>
-                    <p class="text-sm text-slate-500 italic">Enriched with metadata for AD/ADAS training & validation.</p>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="#deep-dive" class="text-blue-600 font-bold text-lg hover:underline flex items-center justify-center gap-2">
-                    Read more about scenarios 
-                    <span>&darr;</span>
-                </a>
-            </div>
+      </li>
+      <li class="feature">
+        <span class="icon-tile"><svg class="icon icon-cluster" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="14.5" r="6" stroke-dasharray="2.4 2.2"/><circle cx="7.3" cy="12.8" r="1.1" fill="currentColor" stroke="none"/><circle cx="11" cy="14" r="1.1" fill="currentColor" stroke="none"/><circle cx="8.4" cy="16.8" r="1.1" fill="currentColor" stroke="none"/><circle cx="18.5" cy="5.5" r="2.2"/></svg></span>
+        <div>
+          <h3>Corner cases found, not guessed</h3>
+          <p>Similar events clustered into scenario families; outliers flagged.</p>
         </div>
-    </section>
-
-    <section id="deep-dive" class="py-20 bg-slate-900 text-white">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-start">
-                
-                <div>
-                    <h2 class="text-3xl font-bold mb-8">Scenario Recording & Reconstruction</h2>
-                    
-                    <div class="mb-8">
-                        <h4 class="text-xl font-bold text-blue-400 mb-2">Surveillance-Based Capture</h4>
-                        <p class="text-slate-300">We capture large-scale real-world traffic using CCTV systems installed at roads and intersections. All traffic participants are tracked in real-time and mapped to an accurate land-coordinate system.</p>
-                    </div>
-
-                    <div class="mb-8">
-                        <h4 class="text-xl font-bold text-blue-400 mb-2">Trajectory-Based Reproduction</h4>
-                        <p class="text-slate-300">From reconstructed motion data, we generate simulation-ready scenarios where the ego-vehicle can be placed in the position of any participant. This enables exhaustive testing in realistic conditions.</p>
-                    </div>
-
-                    <div class="mb-8">
-                        <h4 class="text-xl font-bold text-blue-400 mb-2">Key Capabilities</h4>
-                        <ul class="space-y-2 text-slate-300">
-                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> High-precision trajectory recording</li>
-                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> Automatic recognition of vehicle type & size</li>
-                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> Multi-modal tracking (cars, trucks, peds, bikes)</li>
-                            <li class="flex items-start"><span class="mr-2 text-blue-500">✔</span> Flexible export for various simulators</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-slate-800 p-6 rounded-lg border border-slate-700">
-                        <h4 class="text-lg font-bold mb-3">Supported Standards</h4>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-blue-300">ASAM OpenDRIVE</span>
-                            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-blue-300">ASAM OpenSCENARIO</span>
-                            <span class="bg-slate-700 px-3 py-1 rounded text-sm text-blue-300">ASAM OpenCRG</span>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div class="relative rounded-xl h-128 md:h-[600px] border border-slate-700 shadow-2xl overflow-hidden">
-                        <video autoplay muted loop playsinline 
-                            class="absolute inset-0 w-full h-full object-cover">
-                        <source src="assets/ScenarioExtraction.mp4" type="video/mp4">
-                        </video>
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-slate-900/40"></div>
-
-                                 </div>
-                    
-                    <div class="text-center">
-                        <a href="#contact" class="inline-block w-full md:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition">
-                            Request a Demo
-                        </a>
-                    </div>
-                </div>
-            </div>
+      </li>
+      <li class="feature">
+        <span class="icon-tile"><svg class="icon icon-standards" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5"/><path d="m10 12.5-2 2 2 2M14 12.5l2 2-2 2"/></svg></span>
+        <div>
+          <h3>Open standards</h3>
+          <p>ASAM OpenSCENARIO, OpenDRIVE and OpenCRG; works with esmini and IPG CarMaker.</p>
         </div>
-    </section>
+      </li>
+    </ul>
+  </div>
+</section>
 
-    <section id="digital-twins" class="py-20 bg-slate-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 text-slate-900">Digital Twin Solutions</h2>
+<section class="section section--soft" aria-labelledby="who-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="who-title">Who it is for</h2>
+    </div>
+    <ul class="grid grid--3 card-list">
+      <li class="card">
+        <span class="icon-tile"><svg class="icon icon-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5.5 17.5H4a1 1 0 0 1-1-1v-3.2a1 1 0 0 1 .3-.7L6 9.7A2 2 0 0 1 7.4 9H14a2 2 0 0 1 1.5.7l2.5 2.8 2.2.6a1 1 0 0 1 .8 1v2.4a1 1 0 0 1-1 1h-1.5"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/><path d="M9.5 17.5h5"/></svg></span>
+        <h3>OEMs and Tier-1 suppliers</h3>
+        <p>Ground your scenario catalogue in observed statistics and show that a function was tested against real, local traffic.</p>
+        <a class="link-arrow card-link" href="/technology/">Technology <svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="card">
+        <span class="icon-tile"><svg class="icon icon-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 13.5c2.6 0 3.6-5 6.6-5 2.4 0 2.8 2.5 5.4 2.5"/></svg></span>
+        <h3>Simulation and test service providers</h3>
+        <p>Add location-specific scenario coverage to regression testing, imported straight into your existing toolchain.</p>
+        <a class="link-arrow card-link" href="/technology/">Technology <svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+      <li class="card">
+        <span class="icon-tile"><svg class="icon icon-cctv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.3 8.3 15.6 5a1 1 0 0 1 1.2.7l.9 3.5a1 1 0 0 1-.7 1.2L4.7 13.7a1 1 0 0 1-1.2-.7l-.9-3.5a1 1 0 0 1 .7-1.2z"/><path d="m17.4 7.6 3.1-.8v4.4l-2.2.6"/><path d="M8.5 12.4v3.1H4.5M4.5 12.8V21"/></svg></span>
+        <h3>Camera and infrastructure owners</h3>
+        <p>Turn existing roadside cameras into a source of high-value traffic analysis.</p>
+        <a class="link-arrow card-link" href="/traffic-intelligence/">Traffic Intelligence <svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+    </ul>
+  </div>
+</section>
 
-            <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
-                <div class="md:w-1/2">
-                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Real-Time Traffic Intelligence</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="font-bold text-lg mb-2">Smart Real-Time Traffic Management</h4>
-                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
-                                <li>Low-time-to-collision detection</li>
-                                <li>Detection of atypical or risky behavior</li>
-                                <li>Predictive driver-behavior analytics</li>
-                                <li>Safety insights tailored to client needs</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg mb-2">Micro-Level Traffic Load Analytics</h4>
-                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
-                                <li>High-resolution analytics for road segments & tunnels</li>
-                                <li>Improves planning, modeling, and operational decisions</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 bg-white p-2 rounded-xl shadow-lg border border-slate-200">
-                    <div class="h-96 bg-slate-100 rounded flex items-center justify-center text-slate-400">
-                        <img src="assets/DynamicDT_image.png" alt="Interactive Traffic Heatmap Visual" class="w-full h-96 object-cover rounded">
-                    </div>
-                </div>
-            </div>
+<section class="section section--navy on-dark beyond" aria-labelledby="beyond-title">
+  <div class="container beyond-grid">
+    <div>
+      <p class="eyebrow">Beyond replay</p>
+      <h2 id="beyond-title">Traffic that reacts.</h2>
+    </div>
+    <div>
+      <p class="lead">A recording shows what happened once. Validation asks what happens if the ego brakes harder, arrives earlier or swerves. We are building local traffic behaviour models from observed data, so surrounding traffic responds to the ego instead of replaying a script.</p>
+      <a class="link-arrow" href="/technology/#behaviour-models">Learn more <svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
 
-            <hr class="border-slate-200 my-16">
+<div class="proof">
+  <div class="container">
+    <ul class="proof-list">
+      <li><svg class="icon icon-presentation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20.5h8M7 12.5l3-3 2 2 4.5-4.5"/></svg><span>Presented at IPG Automotive <a href="/news/">Apply &amp; Innovate 2026</a></span></li>
+      <li><svg class="icon icon-standards" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5"/><path d="m10 12.5-2 2 2 2M14 12.5l2 2-2 2"/></svg><span>Built on ASAM open standards</span></li>
+    </ul>
+  </div>
+</div>
 
-            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-                <div class="md:w-1/2">
-                    <h3 class="text-2xl font-bold mb-4 text-blue-900">3D Digital Twin & V2X Readiness</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="font-bold text-lg mb-2">3D Surveillance of the Traffic Scene</h4>
-                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
-                                <li>Unified 3D situational view from multiple camera angles</li>
-                                <li>Real-time coherent representation for operators</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg mb-2">Future-Ready V2X Infrastructure</h4>
-                            <ul class="list-disc list-inside text-slate-600 space-y-1 pl-4">
-                                <li>Serves as perception layer for connected-vehicle services</li>
-                                <li>Supports development of smart roads and autonomous mobility</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 bg-white p-2 rounded-xl shadow-lg border border-slate-200">
-                    <div class="h-96 bg-slate-900 rounded flex items-center justify-center text-slate-400">
-                        <img src="assets/I2V.png" alt="infrastructure to Vehicle Communication" class="w-full h-96 object-cover rounded">
-                    </div>
-                </div>
-            </div>
+<section class="cta-band on-dark" aria-labelledby="cta-title">
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <h2 id="cta-title">Looking for pilot partners.</h2>
+      <p>We run pilot projects with OEMs, Tier-1 suppliers, test houses and infrastructure owners. Tell us about your camera, your function under test, or the gap in your validation.</p>
+    </div>
+    <a class="btn btn--white" href="/contact/">Request a pilot <svg class="icon icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+</main>
+<footer class="site-footer on-dark">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-logo" href="/"><img src="/assets/img/logo-white.svg?v=5c4a0062b1" width="105" height="32" alt="ADSS home"></a>
+        <p>Real-world traffic scenarios for ADAS &amp; AD validation.</p>
+        <a class="footer-social" href="https://www.linkedin.com/company/ad-sim-solutions" rel="noopener"><svg class="icon icon-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6M8 7.5v.01M12 16.5v-6M12 13c0-1.7 1-2.7 2.4-2.7s2.1 1 2.1 2.7v3.5"/></svg><span>LinkedIn</span></a>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2 class="footer-heading">Products</h2>
+          <ul>
+            <li><a href="/technology/">Scenario extraction</a></li>
+            <li><a href="/odrmaker/">ODRMaker</a></li>
+            <li><a href="/traffic-intelligence/">Traffic Intelligence</a></li>
+          </ul>
         </div>
-    </section>
-
-    <section id="announcements" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-10 text-slate-900">News & Announcements</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
-                    <span class="text-xs font-bold text-blue-600 uppercase">Conference</span>
-                    <h4 class="font-bold text-lg mt-2 mb-2">Global Mobility Summit 2025</h4>
-                    <p class="text-sm text-slate-600">Catch us presenting our latest ADAS validation methodologies in Berlin.</p>
-                </div>
-                <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
-                    <span class="text-xs font-bold text-green-600 uppercase">Partnership</span>
-                    <h4 class="font-bold text-lg mt-2 mb-2">New Strategic Alliance</h4>
-                    <p class="text-sm text-slate-600">Announcing our collaboration with leading Smart City providers.</p>
-                </div>
-                <div class="bg-slate-50 p-6 rounded-lg border border-slate-100">
-                    <span class="text-xs font-bold text-purple-600 uppercase">Product Release</span>
-                    <h4 class="font-bold text-lg mt-2 mb-2">Dataset Update: Dense Urban</h4>
-                    <p class="text-sm text-slate-600">500 new hours of high-density intersection scenarios now available.</p>
-                </div>
-            </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Company</h2>
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/news/">News</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
         </div>
-    </section>
-
-    <section id="contact" class="py-20 bg-blue-900 text-white">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4">Ready to build the future of real-world-driven autonomy?</h2>
-                <p class="text-xl text-blue-200">Let’s accelerate your roadmap to safer, AI-powered mobility.</p>
-            </div>
-
-            <form action="https://formspree.io/f/xnjbwbow" 
-                    method="POST"
-                    class="bg-white text-slate-900 p-8 md:p-12 rounded-2xl shadow-2xl">
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Name</label>
-                        <input type="text" name="name" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none" placeholder="Your full name">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold mb-2">Company</label>
-                        <input type="text" name="company" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none" placeholder="Your company name">
-                    </div>
-                </div>
-                <div class="mb-6">
-                    <label class="block text-sm font-bold mb-2">Email</label>
-                    <input type="email" name="email" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none" placeholder="your.email@company.com">
-                </div>
-                <div class="mb-6">
-                    <label class="block text-sm font-bold mb-2">Your Request</label>
-                    <textarea name="message" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded focus:border-blue-500 outline-none h-32" placeholder="Tell us about your project or questions"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition text-lg">
-                    Submit Request
-                </button>
-            </form>
+        <div class="footer-col">
+          <h2 class="footer-heading">Legal</h2>
+          <ul>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Use</a></li>
+            <li><a href="/legal-notice/">Legal Notice</a></li>
+          </ul>
         </div>
-    </section>
-
-    <section class="py-12 bg-slate-50 border-t border-slate-200">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-slate-600 mb-8 max-w-3xl mx-auto text-lg">
-                We collaborate with technology providers, research institutions, and smart-city partners to advance real-world scenario intelligence and digital-twin ecosystems.
-            </p>
-            <div class="flex flex-wrap justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <div class="font-bold text-2xl text-slate-400"></div>
-                <div class="font-bold text-2xl text-slate-400"></div>
-                <div class="font-bold text-2xl text-slate-400"></div>
-                <div class="font-bold text-2xl text-slate-400"></div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-900 text-slate-400 py-12 text-sm">
-        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
-            <div>
-                <img src="assets/Logo Short noline white.svg" alt="ADSS" class="h-6 mb-4">
-                <p class="text-slate-300 mb-4">Pioneering real-world scenario intelligence for autonomous systems.</p>
-                <p>&copy; 2026 AD Simulation Solutions. All rights reserved.</p>
-            </div>
-            
-            <div>
-                <h5 class="text-white font-bold mb-4">Company</h5>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white">Terms and Conditions</a></li>
-                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-white">Our Offices</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h5 class="text-white font-bold mb-4">Connect</h5>
-                <ul class="space-y-2">
-                    <li><a href="https://www.linkedin.com/company/ad-sim-solutions" class="hover:text-white flex items-center gap-2">LinkedIn</a></li>
-                    <li><a href="#contact" class="hover:text-white">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ADSS Inc. <span aria-hidden="true">·</span> Belgrade, Serbia <span aria-hidden="true">·</span> <a href="mailto:info@adss.ai">info@adss.ai</a></p>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

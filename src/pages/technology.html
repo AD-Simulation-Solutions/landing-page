@@ -1,0 +1,98 @@
+---
+title: Technology — Scenario Extraction from Roadside Cameras | ADSS
+description: How ADSS turns roadside video into trajectories, classified critical situations and ASAM OpenSCENARIO / OpenDRIVE scenarios — and grounds generated scenarios in observed traffic.
+url: /technology/
+nav: technology
+---
+<section class="page-head" aria-labelledby="page-title">
+  <div class="container">
+    <p class="eyebrow">Technology</p>
+    <h1 id="page-title">From roadside video to simulation-ready scenarios.</h1>
+    <p class="lead">ADSS mines continuous video from static roadside cameras and turns every observed road user into a candidate ego vehicle. The result is a scenario database with precise trajectories, criticality information and ASAM-standard output.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="pipeline-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The solution</p>
+      <h2 id="pipeline-title">Real traffic, turned into evidence.</h2>
+      <p>One static camera. Six steps. A searchable scenario database instead of a folder of video files.</p>
+    </div>
+    {% include "pipeline" %}
+  </div>
+</section>
+
+<div class="section section--soft">
+  <div class="container topics">
+    <article class="topic" aria-labelledby="perception">
+      <div class="topic-head">
+        <span class="icon-tile">{% icon "cctv" %}</span>
+        <h2 id="perception">Perception built for the roadside.</h2>
+      </div>
+      <div class="topic-body">
+        <p>Static elevated cameras see traffic very differently from an ego-vehicle camera. Our detection, tracking and ground-projection models are tuned for that fixed viewpoint, so the whole interaction is captured — including road users hidden from any single vehicle.</p>
+      </div>
+    </article>
+    <article class="topic" aria-labelledby="classification">
+      <div class="topic-head">
+        <span class="icon-tile">{% icon "classifier" %}</span>
+        <h2 id="classification">Classification and critical situations.</h2>
+      </div>
+      <div class="topic-body">
+        <p>For every track we derive time-dependent features — trajectory curvature, distance to critical objects, minimum time-to-collision. They drive manoeuvre classification and automatic tagging of critical situations, such as unprotected left turns or an occluded pedestrian or cyclist. Similar cases are clustered into scenario families; outliers are flagged as corner cases.</p>
+      </div>
+    </article>
+    <article class="topic" aria-labelledby="output">
+      <div class="topic-head">
+        <span class="icon-tile">{% icon "standards" %}</span>
+        <h2 id="output">Output.</h2>
+      </div>
+      <div class="topic-body">
+        <p>Road model in ASAM OpenDRIVE, scenarios in ASAM OpenSCENARIO, plus event tags and metadata such as time and location. Open formats mean no vendor lock-in: scenarios replay in esmini and import into IPG CarMaker.</p>
+        <ul class="chips" aria-label="Supported standards">
+          <li class="chip">ASAM OpenDRIVE</li>
+          <li class="chip">ASAM OpenSCENARIO</li>
+          <li class="chip">ASAM OpenCRG</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container topics">
+    <article class="topic" aria-labelledby="grounding">
+      <div class="topic-head">
+        <span class="icon-tile">{% icon "chart" %}</span>
+        <h2 id="grounding">Grounding generated scenarios.</h2>
+      </div>
+      <div class="topic-body">
+        <p>Observed data does not replace generated scenarios — it grounds them. From each site we estimate distributions for speed, time gap, yielding, pedestrian and cyclist crossing timing, lane discipline and traffic composition. Use them to vary logical scenario families, set boundaries for AI-generated variants, and compare a generated portfolio against what actually occurs.</p>
+      </div>
+    </article>
+    <article class="topic" aria-labelledby="local-behaviour">
+      <div class="topic-head">
+        <span class="icon-tile">{% icon "pin" %}</span>
+        <h2 id="local-behaviour">Local behaviour.</h2>
+      </div>
+      <div class="topic-body">
+        <p>Two intersections can share geometry and road-user classes and still behave very differently. Drivers accept different gaps, yield and brake differently, and interact differently with pedestrians and cyclists. ADSS extracts site-specific distributions — and measures how other road users react to a manoeuvre of the ego.</p>
+      </div>
+    </article>
+  </div>
+</div>
+
+<section class="section section--navy on-dark" id="behaviour-models" aria-labelledby="behaviour-title">
+  <div class="container beyond-grid">
+    <div>
+      <p class="eyebrow">Beyond replay</p>
+      <h2 id="behaviour-title">Behaviour models.</h2>
+    </div>
+    <div>
+      <p class="lead">Replay answers “what happened”. Validation asks “what if the ego brakes harder, arrives earlier or swerves?” For that, surrounding traffic must react. We are building local traffic behaviour models from observed data — from polite NPCs to a traffic reaction model.</p>
+    </div>
+  </div>
+</section>
+
+{% include "cta-band" %}

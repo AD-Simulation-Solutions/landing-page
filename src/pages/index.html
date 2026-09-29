@@ -1,0 +1,150 @@
+---
+title: ADSS — Real-World Traffic Scenarios for ADAS & AD Validation
+description: ADSS turns roadside camera video into classified, simulation-ready OpenSCENARIO and OpenDRIVE scenarios for ADAS and automated-driving validation.
+url: /
+jsonld: organization
+body_class: page-home
+---
+<section class="hero on-dark" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Real-world traffic scenarios for ADAS &amp; AD validation</p>
+      <h1 id="hero-title">Every road user is a potential ego vehicle.</h1>
+      <p class="lead">ADSS turns continuous roadside camera video into classified, simulation-ready traffic scenarios — thousands per hour from a single observation point, delivered in ASAM OpenSCENARIO and OpenDRIVE.</p>
+      <div class="actions hero-actions">
+        <a class="btn btn--primary" href="/contact/">Request a pilot</a>
+        <a class="btn btn--ghost" href="/technology/">See how it works {% icon "arrow" %}</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      {% svg "hero" %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="problem-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The problem</p>
+      <h2 id="problem-title">More synthetic scenarios will not close the evidence gap.</h2>
+    </div>
+    <ul class="grid grid--3 card-list">
+      <li class="card">
+        <span class="icon-tile">{% icon "drift" %}</span>
+        <h3>Synthetic scenarios drift from reality.</h3>
+        <p>Generation gives you scale and variation, but frequencies, parameter distributions and relevance can disconnect from what actually happens on real roads.</p>
+      </li>
+      <li class="card">
+        <span class="icon-tile">{% icon "occlusion" %}</span>
+        <h3>Vehicle sensors miss the interaction.</h3>
+        <p>Ego-mounted perception is excellent for the ego — and blind to everything occluded around it.</p>
+      </li>
+      <li class="card">
+        <span class="icon-tile">{% icon "bot" %}</span>
+        <h3>Simulated traffic is too polite.</h3>
+        <p>Rule-based NPCs do not reproduce human latency, yielding or unpredictable braking.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--soft" aria-labelledby="solution-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The solution</p>
+      <h2 id="solution-title">Real traffic, turned into evidence.</h2>
+      <p>One static camera. Six steps. A searchable scenario database instead of a folder of video files.</p>
+    </div>
+    {% include "pipeline" %}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="get-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="get-title">What you get</h2>
+    </div>
+    <ul class="grid grid--2 feature-grid">
+      <li class="feature">
+        <span class="icon-tile">{% icon "classes" %}</span>
+        <div>
+          <h3>7 road-user classes</h3>
+          <p>Cars, vans, trucks, buses, motorcycles, bicycles, pedestrians. Any of them can be the ego.</p>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="icon-tile">{% icon "gauge" %}</span>
+        <div>
+          <h3>Criticality built in</h3>
+          <p>Minimum time-to-collision, distance to critical objects, trajectory curvature.</p>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="icon-tile">{% icon "cluster" %}</span>
+        <div>
+          <h3>Corner cases found, not guessed</h3>
+          <p>Similar events clustered into scenario families; outliers flagged.</p>
+        </div>
+      </li>
+      <li class="feature">
+        <span class="icon-tile">{% icon "standards" %}</span>
+        <div>
+          <h3>Open standards</h3>
+          <p>ASAM OpenSCENARIO, OpenDRIVE and OpenCRG; works with esmini and IPG CarMaker.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--soft" aria-labelledby="who-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="who-title">Who it is for</h2>
+    </div>
+    <ul class="grid grid--3 card-list">
+      <li class="card">
+        <span class="icon-tile">{% icon "car" %}</span>
+        <h3>OEMs and Tier-1 suppliers</h3>
+        <p>Ground your scenario catalogue in observed statistics and show that a function was tested against real, local traffic.</p>
+        <a class="link-arrow card-link" href="/technology/">Technology {% icon "arrow" %}</a>
+      </li>
+      <li class="card">
+        <span class="icon-tile">{% icon "monitor" %}</span>
+        <h3>Simulation and test service providers</h3>
+        <p>Add location-specific scenario coverage to regression testing, imported straight into your existing toolchain.</p>
+        <a class="link-arrow card-link" href="/technology/">Technology {% icon "arrow" %}</a>
+      </li>
+      <li class="card">
+        <span class="icon-tile">{% icon "cctv" %}</span>
+        <h3>Camera and infrastructure owners</h3>
+        <p>Turn existing roadside cameras into a source of high-value traffic analysis.</p>
+        <a class="link-arrow card-link" href="/traffic-intelligence/">Traffic Intelligence {% icon "arrow" %}</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section section--navy on-dark beyond" aria-labelledby="beyond-title">
+  <div class="container beyond-grid">
+    <div>
+      <p class="eyebrow">Beyond replay</p>
+      <h2 id="beyond-title">Traffic that reacts.</h2>
+    </div>
+    <div>
+      <p class="lead">A recording shows what happened once. Validation asks what happens if the ego brakes harder, arrives earlier or swerves. We are building local traffic behaviour models from observed data, so surrounding traffic responds to the ego instead of replaying a script.</p>
+      <a class="link-arrow" href="/technology/#behaviour-models">Learn more {% icon "arrow" %}</a>
+    </div>
+  </div>
+</section>
+
+<div class="proof">
+  <div class="container">
+    <ul class="proof-list">
+      <li>{% icon "presentation" %}<span>Presented at IPG Automotive <a href="/news/">Apply &amp; Innovate 2026</a></span></li>
+      <li>{% icon "standards" %}<span>Built on ASAM open standards</span></li>
+    </ul>
+  </div>
+</div>
+
+{% include "cta-band" %}
