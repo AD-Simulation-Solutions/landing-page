@@ -248,7 +248,7 @@ def static_checks() -> dict:
                 continue
             if v.startswith(("http://", "https://")):
                 host = urlsplit(v).hostname or ""
-                allowed = host in ("adss.ai", "www.linkedin.com", "formspree.io")
+                allowed = host in ("adss.ai", "www.linkedin.com", "formspree.io", "odrmaker.com")
                 if not allowed:
                     link_errors.append(f"{url}: unexpected external {attr} {v}")
                 if host == "formspree.io" and not (tag == "form" and attr == "action"):
