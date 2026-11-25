@@ -3,7 +3,8 @@
 Plain HTML + CSS + a small vanilla JS file, assembled from sources by a
 standard-library Python build script. No framework, no CDN, no cookies, no
 analytics, no third-party requests at page load. The only external endpoint is
-Formspree, contacted when the contact form is submitted.
+Formspree, contacted when a contact form is submitted (the contact page and the
+AI junction mapping article each have one).
 
 ```
 build.py              build script (Python 3 stdlib only)  src/ -> dist/
@@ -19,6 +20,7 @@ src/
   drafts/             UNPUBLISHED: research page + ROADS news item
 tools/make_assets.py  regenerates logos, favicons and the OG image (Playwright + Pillow)
 tests/check.py        Playwright verification (see "Checks")
+docs/plans/           implementation plans and working notes, not built, not published
 dist/                 the deployable site: upload its contents to OVH `www/`
 ```
 
@@ -57,11 +59,11 @@ python3 build.py && python3 tests/check.py
 ```
 
 Chromium must already be available to Playwright (`PLAYWRIGHT_BROWSERS_PATH`).
-The script checks all 11 published pages at 320–1440 px (no horizontal scroll),
-network requests (local only), cookies and storage, console errors and CSP
-violations (the production CSP is read from `dist/.htaccess` and enforced),
-the mobile menu, every internal link and `#fragment`, the contact form with a
-mocked Formspree response, contrast, target sizes, layout shift, reduced
+The script checks all 12 published pages at 320–1440 px (no horizontal
+scroll), network requests (local only), cookies and storage, console errors and
+CSP violations (the production CSP is read from `dist/.htaccess` and enforced),
+the mobile menu, every internal link and `#fragment`, the contact form and its
+copy in the AI junction mapping article, both with a mocked Formspree response, contrast, target sizes, layout shift, reduced
 motion, meta tags, sitemap and drafts. It saves screenshots to
 `tests/screenshots/`, a summary to `tests/results.md` and details to
 `tests/results.json`. Exit code 0 means everything passed.
@@ -82,6 +84,9 @@ motion, meta tags, sitemap and drafts. It saves screenshots to
   The street address is intentionally not published yet. When the legal texts
   are approved, remove the `legal_draft: true` line (it adds the "DRAFT — to be
   reviewed by a lawyer" HTML comment) and update the "Last updated" date.
+- **Article form**: the form in `ai-junction-mapping.html` is a deliberate copy
+  of the one in `contact.html` (hidden `source` field with value `ai-junction-mapping`, `aj-` id prefix). Change
+  both together, and update the article-form checks in `tests/check.py`.
 - **Logos, favicons, OG image**: edit `tools/make_assets.py` and run
   `python3 tools/make_assets.py` (needs Playwright and Pillow), then rebuild.
 
@@ -133,9 +138,9 @@ and rebuild.
    curl -sI https://adss.ai/ | grep -iE "strict-transport|content-security|x-content-type|referrer|permissions"
    curl -s -o /dev/null -w "%{http_code}\n" https://adss.ai/missing-page/   # 404
    ```
-   Then open the site on a phone, submit the contact form once and confirm the
-   email arrives (the first Formspree submission may ask you to confirm the
-   form address).
+   Then open the site on a phone, submit the contact form and the article
+   form once and confirm the emails arrive (the first Formspree submission may
+   ask you to confirm the form address).
 
 If `http → https` ends in a redirect loop (possible on hosting plans where TLS
 is terminated in front of Apache), replace the two HTTPS `RewriteCond` lines in
