@@ -1,0 +1,138 @@
+---
+title: AI-Assisted Junction Mapping in ODRMaker | ADSS
+description: How an AI agent can map a road junction into OpenDRIVE from orthophoto imagery in ODRMaker: who decides what, the pipeline, a real Lelystad run, the checks, and the limits.
+url: /odrmaker/ai-junction-mapping/
+nav: odrmaker
+og_type: article
+---
+<section class="page-head" aria-labelledby="page-title">
+  <div class="container">
+    <p class="eyebrow">ODRMaker</p>
+    <h1 id="page-title">AI-assisted junction mapping from aerial imagery.</h1>
+    <p class="lead">An AI agent can draft an OpenDRIVE model of a road junction from an orthophoto. The vision model decides what things mean; measurements decide where they are; a human reviews the result.</p>
+    <p><strong>Status as of November 2026:</strong> in development. It is not yet a shipped one-click feature of ODRMaker.</p>
+    <p class="actions"><a class="link-arrow" href="/odrmaker/">About ODRMaker {% icon "arrow" %}</a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="problem-title">
+  <div class="container">
+    <div class="prose">
+      <h2 id="problem-title">The problem: hand-drawing junctions in OpenDRIVE</h2>
+      <p>A road model is needed for simulation and testing. A junction is the most laborious part of it: several arms, lanes of different types, and a set of connecting roads that say which lane leads where. Drawing this by hand over an aerial image is slow.</p>
+      <p>We have been testing whether an AI agent can do the first draft inside ODRMaker, with a person checking and correcting the result.</p>
+
+      <h2>Who decides what: vision model vs measurements</h2>
+      <p>The rule of the pipeline is short: the vision model decides what things mean, classical computer vision gives the numbers, and the vision model never writes geometry.</p>
+      <p>The reason is practical. Estimating a position by eye from an image frame was off by 0.6 to 4.9 m in our tests. The same places, measured with tools, land within 10 to 20 cm.</p>
+      <ul>
+        <li><strong>The vision model decides:</strong> direction of travel (arrows, zebra crossings), lane type (parking or shoulder, bike lane, restricted), what unexplained paint is, and how many arms the junction has.</li>
+        <li><strong>Classical computer vision measures:</strong> heading, line positions, widths and the residual. Each number in the resulting specification carries its provenance: the tool, the station and the value.</li>
+      </ul>
+
+      <h2>The pipeline</h2>
+      <ol>
+        <li><strong>Fetch the imagery.</strong> The orthophoto comes straight from the imagery service. A licence gate lets through only layers whose terms allow derivative works.</li>
+        <li><strong>Georeference.</strong> Pixels are converted to WebMercator, then WGS84, then metres from the centre of the frame.</li>
+        <li><strong>Use OpenStreetMap as a prior only.</strong> The numbers in the model come from the image. Where the two disagree, the image wins.</li>
+        <li><strong>Collect evidence.</strong> Paint masks, a heading scan, arm detection by a ring scan, and straightened ribbon and cross-section profiles.</li>
+        <li><strong>Write the specification.</strong> One JSON file is the contract between the measurements and the editor: a reference line, lanes counted outward from the centre line with type, width and marking, connections as lane pairs, and provenance for every number.</li>
+        <li><strong>Build in the editor.</strong> A script drives the editor store headlessly, with no browser, using the store's own actions.</li>
+        <li><strong>Check, correct, rebuild.</strong> The agent reads the residual, fixes the specification and builds again. The result is an <code>.xodr</code> file that opens in ODRMaker on top of its own imagery, with the imagery attribution stamped in the file header.</li>
+      </ol>
+
+      <h2>A real run: the Lelystad junction</h2>
+      <p>The example is a signalised junction of two dual carriageways in Lelystad, the Netherlands (Zuigerplasdreef and Geldersedreef), plus an industrial-estate entrance. We chose it openly: an earlier run on the same junction exposed a flattering metric and led us to rewrite the checking tools (see the correction below).</p>
+      <p>The figure shows the third build of a rebuild made on 24 November 2026, drawn over the aerial photo. The photo is an 8 cm layer taken in winter, so the trees are bare, at about 9 cm per pixel.</p>
+      <figure>
+        <img src="{{ asset "/assets/img/ai-junction-lelystad-overlay.jpg" }}" width="1100" height="1100" alt="Aerial photo of a signalised junction in Lelystad, about 260 m across, with the generated road model drawn over it: three arms and the connecting lanes through the junction." loading="lazy" decoding="async">
+        <figcaption>The generated model over the orthophoto of the Lelystad junction. © Beeldmateriaal Nederland, PDOK</figcaption>
+      </figure>
+      <ul>
+        <li><strong>What was built:</strong> three arms (north, east, south), eight connecting movements through one junction, 11 roads in total.</li>
+        <li><strong>Accuracy:</strong> the worst boundary is off by about 23 cm. It is the south edge of the east arm, where two paint lines 1.1 m apart make the residual oscillate. We know about it and left it as it is.</li>
+        <li><strong>How it got there:</strong> five builds; build 3 is kept. Re-measuring on the road's own station range brought the worst residual from 45 cm to 23 cm, and later attempts at the last boundary did not improve it.</li>
+      </ul>
+
+      <h2>What it checks itself</h2>
+      <ul>
+        <li><strong>Model against paint:</strong> a signed, sub-pixel offset along the normal for every boundary, each classed as paint, kerb or connector.</li>
+        <li><strong>Paint against model:</strong> for every paint line of 2 m or more in the corridor, is there a model boundary within 2 m? The answer is a list of places to look at, not a verdict.</li>
+        <li><strong>Lane reachability:</strong> a model in which no connector arrives in an outgoing lane is valid OpenDRIVE but wrong as a road, so this is checked separately.</li>
+        <li><strong>Provenance:</strong> every number can be traced to the tool, station and value that produced it.</li>
+        <li><strong>Round trip:</strong> the file is saved and loaded again with the editor's own implementation. It is not validated against the external ASAM 1.8.1 schema.</li>
+        <li><strong>Stating what is unknown:</strong> the tools report when they cannot be trusted, for example at the edge of a sweep, for kerb boundaries, or when shadows cover much of the pavement.</li>
+      </ul>
+      <p>A clean validator report is never a quality claim on its own. A good residual does not mean a good model, so results are always read together with the residual and lane reachability. In one run this kind of check caught a modelling error before a person did: a dual carriageway had first been built as a single 10.2 m carriageway.</p>
+
+      <h3>A correction</h3>
+      <p>Our first run reported a median accuracy of 9.1 cm. That number came from the measuring tool, not from the model: 9.1 cm is exactly one pixel, not accuracy. The old tool measured distances on the pixel grid, dropped points without paint before taking the median, mixed paint-confirmed and kerb boundaries in one number, and asked only one question, so a missed lane was invisible. We withdrew the 9.1 cm figure.</p>
+      <p>After we rewrote the tools, the 6 November model (12 roads) re-measured as follows: of 29 boundaries, 3 lay at the measurement floor, 8 within 15 cm, and 5 were off by a metre or more. The reverse check left 11 of 134 paint lines unexplained. The first run on Lelystad was rejected because the metric of that time was wrong, not because the method was worse; the rebuild shown above is the current model.</p>
+
+      <h2>Honest limits</h2>
+      <ul>
+        <li><strong>Accuracy depends on paint and light.</strong> About 10 cm only where a boundary has its own paint and the arm is lit. On boundaries without their own paint, earlier reports measured the pixel grid.</li>
+        <li><strong>Review is expected.</strong> The acceptance criterion is that each paint-class boundary lies within 25 cm, and the share of kerb boundaries, which the image cannot confirm, is named explicitly. A person reviews the result.</li>
+        <li><strong>Lane markings are required.</strong> Without painted markings every boundary becomes a kerb and acceptance fails by construction.</li>
+        <li><strong>Trees and shadows break the pavement mask.</strong> The fix is an image from another date, not tuning thresholds.</li>
+        <li><strong>Simple road geometry.</strong> A reference line is one straight segment and a road has one lane section, so curved arms and lane-count changes such as turn pockets cannot be expressed.</li>
+        <li><strong>The junction interior is simplified.</strong> It is modelled as connecting lanes only; crossings, stop lines and turn pockets inside it are not modelled.</li>
+        <li><strong>Outside the model:</strong> elevation profile, speed and road class, signal controllers, lane access and marking changes along a lane.</li>
+        <li><strong>Corpus.</strong> The pipeline has been run on junctions in the Netherlands, Germany, Belgium and Switzerland. Early runs were rejected, including the first run on Lelystad.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--soft" aria-labelledby="try-title">
+  <div class="container">
+    <div class="prose">
+      <h2 id="try-title">Try it on your junction</h2>
+      <p>Tell us which junction you need mapped and what the model is for. We usually reply within two business days.</p>
+      <div class="form-card">
+        <form class="contact-form" action="https://formspree.io/f/xnjbwbow" method="POST" data-enhance>
+          <input type="hidden" name="_subject" value="adss.ai enquiry — AI junction mapping">
+          <input type="hidden" name="source" value="ai-junction-mapping">
+          <div class="form-grid">
+            <div class="field">
+              <label for="aj-name">Name</label>
+              <input id="aj-name" name="name" type="text" autocomplete="name" maxlength="100" required>
+            </div>
+            <div class="field">
+              <label for="aj-company">Company</label>
+              <input id="aj-company" name="company" type="text" autocomplete="organization" maxlength="150" required>
+            </div>
+            <div class="field field--full">
+              <label for="aj-email">Work email</label>
+              <input id="aj-email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" required>
+            </div>
+            <div class="field field--full">
+              <label for="aj-interest">I'm interested in <span class="optional">(optional)</span></label>
+              <select id="aj-interest" name="interest">
+                <option value="">Please choose</option>
+                <option>Scenario extraction</option>
+                <option selected>ODRMaker</option>
+                <option>Traffic Intelligence</option>
+                <option>Pilot project</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="aj-message">What would you like to test or discuss?</label>
+              <textarea id="aj-message" name="message" rows="6" minlength="20" maxlength="3000" required></textarea>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="aj-gotcha">Leave this field empty</label>
+              <input id="aj-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--primary" type="submit">Send request</button>
+            <p class="form-note">We use your details only to answer your request. See our <a href="/privacy/">Privacy Policy</a>.</p>
+          </div>
+          <div class="form-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1048,10 +1048,14 @@ html.nav-open, html.nav-open body { overflow: hidden; }
 .prose h2 { margin: 2.5rem 0 .75rem; font-size: clamp(1.25rem, 1.1rem + .5vw, 1.5rem); letter-spacing: -.015em; }
 .prose h2:first-child { margin-top: 0; }
 .prose h3 { margin: 1.75rem 0 .5rem; font-size: 1.0625rem; }
-.prose ul { margin: 0 0 1em; padding-left: 1.25rem; }
+.prose ul, .prose ol { margin: 0 0 1em; padding-left: 1.25rem; }
 .prose li { margin: .4rem 0; padding-left: .25rem; }
 .prose li::marker { color: var(--brand); }
 .prose a { overflow-wrap: anywhere; }
+/* figure with caption inside long-form text */
+.prose figure { margin: 1.5rem 0; }
+.prose figure img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: .5rem; }
+.prose figcaption { margin-top: .5rem; color: var(--muted); font-size: .9375rem; }
 .prose-aside { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); }
 .info-list { display: grid; margin: 0 0 1em; border-top: 1px solid var(--line); }
 .info-list > div { display: grid; gap: .125rem; padding: .75rem 0; border-bottom: 1px solid var(--line); }
