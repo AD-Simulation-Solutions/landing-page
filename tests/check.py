@@ -37,10 +37,17 @@ DIST = ROOT / "dist"
 SHOTS = ROOT / "tests" / "screenshots"
 SITE = "https://adss.ai"
 
+AJ_URL = "/odrmaker/ai-junction-mapping/"
+AJ_SOURCE = "ai-junction-mapping"
+AJ_SUBJECT = "adss.ai enquiry \u2014 AI junction mapping"
+AJ_LINK_PAGES = ("/", "/odrmaker/")  # pages that must link to the article
+FORMSPREE_ACTION = "https://formspree.io/f/xnjbwbow"
+
 PAGES = [
     ("home", "/"),
     ("technology", "/technology/"),
     ("odrmaker", "/odrmaker/"),
+    ("ai-junction-mapping", AJ_URL),
     ("traffic-intelligence", "/traffic-intelligence/"),
     ("about", "/about/"),
     ("news", "/news/"),
@@ -229,6 +236,8 @@ def static_checks() -> dict:
         if url in NAV_KEY:
             ok = re.search(fr'<a href="{re.escape(url)}" aria-current="page">{re.escape(NAV_KEY[url])}</a>', html)
             R.add(g, "aria-current on nav item", bool(ok))
+        if url in AJ_LINK_PAGES:
+            R.add(g, "links to AI junction mapping article", any(v.strip() == AJ_URL for _, _, v in c.links))
         # hype words
         text = " ".join(c.text_parts).lower()
         hits = [w for w in HYPE if w in text]
@@ -385,6 +394,22 @@ TARGETS_JS = """
     return {cls: el.className || el.tagName, text: (el.textContent || el.name || '').trim().slice(0, 30), w: Math.round(r.width), h: Math.round(r.height)}; });
 }
 """
+
+
+# every form control (minus the per-page hidden fields) with the attributes the two forms must share
+FORM_SIGNATURE_JS = """Array.from(document.querySelector('form.contact-form').elements)
+    .filter(el => el.name && !['_subject', 'source'].includes(el.name))
+    .map(el => [el.name, el.type, el.required, el.maxLength, el.minLength, el.autocomplete,
+                el.tagName === 'SELECT' ? Array.from(el.options).map(o => o.text) : null])"""
+
+
+def fill_and_submit(page, prefix: str, message: str) -> None:
+    page.fill(f"#{prefix}-name", "Test Person")
+    page.fill(f"#{prefix}-company", "Test GmbH")
+    page.fill(f"#{prefix}-email", "test.person@example.com")
+    page.fill(f"#{prefix}-message", message)
+    page.locator("button[type=submit]").click()
+    page.wait_for_timeout(200)
 
 
 def browser_checks(host: str) -> dict:
@@ -561,7 +586,7 @@ def browser_checks(host: str) -> dict:
         R.add("form", "no request to Formspree on page load", not posted)
         form = page.locator("form.contact-form")
         R.add("form", "plain POST fallback (action + method)",
-              form.get_attribute("action") == "https://formspree.io/f/xnjbwbow" and form.get_attribute("method").upper() == "POST")
+              form.get_attribute("action") == FORMSPREE_ACTION and form.get_attribute("method").upper() == "POST")
         labels_ok = page.evaluate("""Array.from(document.querySelectorAll('form input:not([type=hidden]), form select, form textarea'))
             .every(el => el.id && document.querySelector('label[for="' + el.id + '"]'))""")
         R.add("form", "every input has <label for>", labels_ok)
@@ -637,6 +662,67 @@ def browser_checks(host: str) -> dict:
         R.add("form", "error message links to info@adss.ai",
               page.locator('.form-status a[href="mailto:info@adss.ai"]').count() == 1)
         page.screenshot(path=str(SHOTS / "contact-form-error-390.png"), full_page=False)
+        ctx.close()
+
+        # ---- article form ------------------------------------------------------
+        print("\n== Article form ==")
+        ctx = browser.new_context(viewport={"width": 390, "height": 844})
+        page = ctx.new_page()
+        art_posted: list = []
+        art_pending: list = []
+        page.route("https://formspree.io/**", lambda route: art_pending.append(route))
+        page.on("request", lambda req: art_posted.append(req) if "formspree.io" in req.url else None)
+        page.goto(base + AJ_URL, wait_until="networkidle")
+        R.add("article", "no request to Formspree on page load", not art_posted)
+        art_form = page.locator("form.contact-form")
+        R.add("article", "action + method match the contact form",
+              art_form.get_attribute("action") == FORMSPREE_ACTION and (art_form.get_attribute("method") or "").upper() == "POST")
+        art_sig = page.evaluate(FORM_SIGNATURE_JS)
+        other = ctx.new_page()
+        other.goto(base + "/contact/", wait_until="networkidle")
+        R.add("article", "fields match the contact form (names, required, lengths, autocomplete)",
+              art_sig == other.evaluate(FORM_SIGNATURE_JS), json.dumps(art_sig))
+        other.close()
+        R.add("article", "interest preselected ODRMaker, source and subject hidden fields",
+              page.evaluate("""s => { const f = document.querySelector('form.contact-form');
+                  return f.elements.interest.value === 'ODRMaker' && f.elements.source.value === s.source
+                      && f.elements._subject.value === s.subject; }""", {"source": AJ_SOURCE, "subject": AJ_SUBJECT}))
+        art_hp = page.locator("#aj-gotcha").bounding_box()
+        R.add("article", "honeypot hidden by CSS class", art_hp is None or art_hp["x"] < -1000)
+        labels_ok = page.evaluate("""Array.from(document.querySelectorAll('form input:not([type=hidden]), form select, form textarea'))
+            .every(el => el.id && document.querySelector('label[for="' + el.id + '"]'))""")
+        R.add("article", "every input has <label for>", labels_ok)
+
+        page.locator("button[type=submit]").click()
+        page.wait_for_timeout(150)
+        errs = page.locator(".field-error").all_inner_texts()
+        R.add("article", "empty submit shows 4 text messages under the fields", len(errs) == 4 and all(len(e) > 10 for e in errs), str(errs))
+        R.add("article", "invalid fields marked aria-invalid + aria-describedby",
+              page.evaluate("Array.from(document.querySelectorAll('[aria-invalid=true]')).every(e => document.getElementById(e.getAttribute('aria-describedby')))")
+              and page.locator("[aria-invalid=true]").count() == 4)
+        R.add("article", "focus moves to first invalid field", page.evaluate("document.activeElement.id") == "aj-name")
+        R.add("article", "nothing sent while invalid", not art_posted and not art_pending)
+
+        fill_and_submit(page, "aj", "We would like to map a junction near our test track.")
+        art_body = art_posted[-1].post_data if art_posted else ""
+        art_fields = dict(re.findall(r'name="([^"]+)"\r?\n\r?\n([^\r\n]*)', art_body or ""))
+        R.add("article", "post carries source, interest and subject",
+              bool(art_posted) and art_fields.get("source") == AJ_SOURCE and art_fields.get("interest") == "ODRMaker"
+              and art_fields.get("_subject") == AJ_SUBJECT, str(art_fields))
+        R.add("article", "submit reached the route handler", len(art_pending) == 1, str(len(art_pending)))
+        if art_pending:
+            art_pending.pop(0).fulfill(status=200, content_type="application/json", body='{"ok":true}')
+        page.wait_for_timeout(300)
+        art_status = page.locator(".form-status")
+        R.add("article", "success message shown (mocked 200)", art_status.inner_text().strip() == SUCCESS_TEXT, art_status.inner_text())
+        fill_and_submit(page, "aj", "Second message to check the error state of the form.")
+        R.add("article", "second submit reached the route handler", len(art_pending) == 1, str(len(art_pending)))
+        if art_pending:
+            art_pending.pop(0).fulfill(status=500, content_type="application/json", body='{"error":"x"}')
+        page.wait_for_timeout(300)
+        R.add("article", "error message shown (mocked 500)", art_status.inner_text().strip() == ERROR_TEXT, art_status.inner_text())
+        R.add("article", "error message links to info@adss.ai",
+              page.locator('.form-status a[href="mailto:info@adss.ai"]').count() == 1)
         ctx.close()
 
         # ---- reduced motion ----------------------------------------------------
