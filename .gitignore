@@ -9,3 +9,4 @@ REPORT.md
 src/drafts/
 tests/screenshots/
 tests/results.json
+docs/plans/*-facts.md
